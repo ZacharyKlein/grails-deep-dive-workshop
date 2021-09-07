@@ -6,6 +6,8 @@ import groovy.util.logging.Slf4j
 @Slf4j
 class NewsletterController {
 
+    NewsletterSubscriberService newsletterSubscriberService
+
     static allowedMethods = [index: "GET", subscribe: "POST"]
 
     def index() {
@@ -15,8 +17,8 @@ class NewsletterController {
 
     def subscribe(Subscriber subscriber) {
 
-        log.info(subscriber.toString())
+        newsletterSubscriberService.save(subscriber)
 
-        render subscriber as JSON
+        [firstName: subscriber.firstName]
     }
 }
