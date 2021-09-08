@@ -1,0 +1,10 @@
+import deep.dive.Subscriber
+
+model {
+    Subscriber subscriber
+}
+
+json {
+    email subscriber.email
+    fullName subscriber.getFullName()
+}

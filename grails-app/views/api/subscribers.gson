@@ -1,0 +1,12 @@
+import deep.dive.Subscriber
+
+model {
+    List<Subscriber> subscribers
+}
+
+json {
+    message "Hello World!"
+    apiVersion "v1"
+
+    subscribers tmpl.subscriber(subscribers)
+}

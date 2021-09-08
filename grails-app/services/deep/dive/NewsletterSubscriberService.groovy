@@ -18,12 +18,20 @@ class NewsletterSubscriberService { //implements GrailsConfigurationAware {
     @Value('${demo}')
     String demo
 
+    //TODO: Replace this with persistence!
+    private List<Subscriber> subscriberStore = []
+
     //Injecting Grails Application context
     //GrailsApplication grailsApplication
 
+    List<Subscriber> subscribers() {
+        subscriberStore
+    }
 
     void save(Subscriber subscriber) {
         log.info "Saving subscriber: [${subscriber.email}]"
+
+        subscriberStore << subscriber
 
         //Inject config via grailsApplication.config
         //grailsApplication.config.getProperty("demo", Integer)

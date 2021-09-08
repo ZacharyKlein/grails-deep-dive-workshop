@@ -11,7 +11,8 @@ class NewsletterController {
     static allowedMethods = [index: "GET", subscribe: "POST"]
 
     def index() {
-        [:]
+
+        [message: "Welcome to our Newsletter!"]
     }
 
 
@@ -19,6 +20,6 @@ class NewsletterController {
 
         newsletterSubscriberService.save(subscriber)
 
-        [firstName: subscriber.firstName]
+        [subscriber: subscriber]
     }
 }

@@ -10,6 +10,11 @@ class Subscriber implements Validateable {
     String firstName
     String lastName
 
+    String getFullName() {
+        firstName ? "${firstName} ${lastName}" : lastName
+    }
+
+
     static constraints = {
         email nullable: false, blank: false, email: true
         firstName nullable: true
