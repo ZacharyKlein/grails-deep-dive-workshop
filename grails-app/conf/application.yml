@@ -103,6 +103,7 @@ dataSource:
     driverClassName: org.h2.Driver
     username: sa
     password: ''
+    logSql: true
 
 demo: My Config Value for All Environments
 

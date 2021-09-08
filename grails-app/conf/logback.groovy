@@ -36,3 +36,6 @@ if (Environment.isDevelopmentMode() && targetDir != null) {
 }
 root(ERROR, ['STDOUT'])
 logger('deep.dive', INFO) //will also log WARN and ERROR (but not DEBUG or TRACE)
+
+logger 'org.hibernate.type.descriptor.sql.BasicBinder', TRACE
+logger 'org.hibernate.SQL', TRACE //Don't include this if you don't want duplicate log statements!, ['STDOUT']
