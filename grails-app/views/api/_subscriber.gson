@@ -8,3 +8,5 @@ json {
     email subscriber.email
     fullName subscriber.getFullName()
 }
+//Default rendering of POGO as JSON
+//json g.render(subscriber)

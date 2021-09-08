@@ -16,5 +16,33 @@ class SubscriberSpec extends Specification{
 
     }
 
+    void "Subscriber firstName is optional"() {
+
+        when:
+        def subscribe = new Subscriber(firstName: null)
+
+        then:
+        subscribe.validate(['firstName'])
+    }
+
+    void "Subscriber email must be a valid email address"() {
+
+        when:
+        def subscribe = new Subscriber(email: "joesmith")
+
+        then:
+        !subscribe.validate(['email'])
+
+        when:
+        subscribe = new Subscriber(email: "joe@smith.com")
+
+        then:
+        subscribe.validate(['email'])
+    }
+
+
+
+
+
 
 }
