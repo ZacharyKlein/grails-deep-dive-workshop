@@ -59,19 +59,9 @@ class ApiControllerIntegrationSpec extends Specification {
         responseBody['subscribers'].size() == 1
 
 
-        when:
-        //TODO delete the subscriber
-        subscriberEntityDataService.delete(subscriber['email'])
-        request = HttpRequest.GET('/api/subscribers')
-                .contentType(MediaType.APPLICATION_JSON)
+        cleanup:
+        subscriberEntityDataService.deleteByEmail(subscriber['email'])
 
-        response = httpClient.toBlocking().exchange(request, Map)
-        responseBody = response.body()
-
-        then:
-
-        response.status() == HttpStatus.OK
-        responseBody['subscribers'].size() == 0
     }
 
 }

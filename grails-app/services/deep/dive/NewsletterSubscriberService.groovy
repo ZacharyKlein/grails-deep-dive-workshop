@@ -47,7 +47,7 @@ class NewsletterSubscriberService { //implements GrailsConfigurationAware {
         }
 
         entity.with {
-            //email = subscriber.email
+            email = subscriber.email
             firstName = subscriber.firstName
             lastName = subscriber.lastName
         }
