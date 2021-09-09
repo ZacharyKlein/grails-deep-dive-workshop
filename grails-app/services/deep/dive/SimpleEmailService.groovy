@@ -1,10 +1,12 @@
 package deep.dive
 
 import groovy.util.logging.Slf4j
+import org.springframework.beans.factory.annotation.Autowired
 
 @Slf4j
 class SimpleEmailService implements EmailService {
 
+    @Autowired
     EmailComposer emailComposer
 
     void sendEmail(String recipient, EmailType emailType) {
@@ -14,6 +16,9 @@ class SimpleEmailService implements EmailService {
         switch (emailType) {
             case EmailType.WELCOME:
                 emailBody = emailComposer.composeWelcomeEmail(recipient)
+                break
+            case EmailType.NEWSLETTER:
+                emailBody = emailComposer.composeNewsletterEmail(recipient)
                 break
             default:
                 emailBody = null

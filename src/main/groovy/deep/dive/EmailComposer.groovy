@@ -24,6 +24,11 @@ Please confirm your email address by clicking this link: ${serverUrl}/newsletter
     }
 
 
+    String composeNewsletterEmail(String recipient) {
+        "Hello ${recipient}! We hope you enjoy the newsletter"
+    }
+
+
     @Override
     void setConfiguration(Config co) {
         serverUrl = co.getProperty("grails.serverUrl")
