@@ -25,9 +25,7 @@ class NewsletterController {
 
 
     def confirm(String token) {
-        String email = token //decode email from token
-
-        newsletterSubscriberService.verifyByEmail(email)
+        String email = newsletterSubscriberService.verifyByEmail(token)
 
         [email: email]
     }

@@ -22,6 +22,8 @@ class NewsletterSubscriberService { //implements GrailsConfigurationAware {
 
     SubscriberEntityDataService subscriberEntityDataService
 
+    EmailService emailService
+
 
     //Injecting Grails Application context
     //GrailsApplication grailsApplication
@@ -78,10 +80,14 @@ class NewsletterSubscriberService { //implements GrailsConfigurationAware {
 
     }
 
-    void verifyByEmail(String email) {
+    String verifyByEmail(String token) {
+        log.info "Validating ${token}..."
+        String email = emailService.verifyToken(token)
+
         log.info "Verifying ${email}..."
         subscriberEntityDataService.updateVerifiedByEmail(email, true)
 
+        email
     }
 
 
