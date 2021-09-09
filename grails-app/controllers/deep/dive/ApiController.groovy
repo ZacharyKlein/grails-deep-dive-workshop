@@ -14,4 +14,8 @@ class ApiController {
         [subscribers: newsletterSubscriberService.subscribers()]
     }
 
+    def verifiedSubscribers() {
+        [subscribers: newsletterSubscriberService.verifiedSubscribers()]
+    }
+
 }

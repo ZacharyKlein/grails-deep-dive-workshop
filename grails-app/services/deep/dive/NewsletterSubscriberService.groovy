@@ -37,6 +37,15 @@ class NewsletterSubscriberService { //implements GrailsConfigurationAware {
         }
     }
 
+    List<Subscriber> verifiedSubscribers() {
+        subscriberEntityDataService.findAllByVerified(true, [sort: 'lastName']).collect {
+            new Subscriber(firstName:
+                    it.firstName, lastName:
+                    it.lastName, email:
+                    it.email)
+        }
+    }
+
     void save(Subscriber subscriber) {
         log.info "Saving subscriber: [${subscriber.email}]"
 
@@ -68,4 +77,15 @@ class NewsletterSubscriberService { //implements GrailsConfigurationAware {
         log.info("Saved subscriber with id: ${entity.id}")
 
     }
+
+    void verifyByEmail(String email) {
+        log.info "Verifying ${email}..."
+        subscriberEntityDataService.updateVerifiedByEmail(email, true)
+
+    }
+
+
+
+
+
 }

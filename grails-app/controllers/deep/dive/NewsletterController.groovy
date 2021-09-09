@@ -22,4 +22,14 @@ class NewsletterController {
 
         [subscriber: subscriber]
     }
+
+
+    def confirm(String token) {
+        String email = token //decode email from token
+
+        newsletterSubscriberService.verifyByEmail(email)
+
+        [email: email]
+    }
+
 }

@@ -5,7 +5,7 @@ model {
 }
 
 json {
-    message "All Subscribers"
+    message "Verified Subscribers"
     apiVersion "v1"
 
     subscribers tmpl.subscriber(subscribers)

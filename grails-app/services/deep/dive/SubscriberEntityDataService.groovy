@@ -10,6 +10,10 @@ interface SubscriberEntityDataService {
     @ReadOnly
     List<SubscriberEntity> list(Map args)
 
+
+    @ReadOnly
+    List<SubscriberEntity> findAllByVerified(Boolean verified, Map args)
+
     @ReadOnly
     SubscriberEntity findByEmail(String email)
 
@@ -18,4 +22,6 @@ interface SubscriberEntityDataService {
     void delete(Serializable id)
 
     void deleteByEmail(String email)
+
+    void updateVerifiedByEmail(String email, Boolean verified)
 }

@@ -6,6 +6,8 @@ class SubscriberEntity {
     String firstName
     String lastName
 
+    Boolean verified = false
+
     static constraints = {
         email nullable: false, blank: false, email: true
         firstName nullable: true
