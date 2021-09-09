@@ -15,6 +15,9 @@ class ApiControllerIntegrationSpec extends Specification {
     @Shared
     HttpClient httpClient
 
+    @Shared
+    SubscriberEntityDataService subscriberEntityDataService
+
     @OnceBefore
     void init() {
         this.httpClient = HttpClient.create(new URL("http://localhost:$serverPort"))
@@ -38,10 +41,11 @@ class ApiControllerIntegrationSpec extends Specification {
 
         when: "POST a new subscriber to /newsletter/subscribe"
         request = HttpRequest.POST('/newsletter/subscribe', subscriber)
-        response = httpClient.toBlocking().exchange(request, Map)
+        response = httpClient.toBlocking().exchange(request, String)
 
         then:
         response.status() == HttpStatus.OK
+        response.body().contains("<h1>John Smith, thanks for subscribing. Please check your email</h1>")
 
         when: "call /api/subscribers endpoint and assert there is 1 subscriber"
         request = HttpRequest.GET('/api/subscribers')
@@ -53,6 +57,21 @@ class ApiControllerIntegrationSpec extends Specification {
         then:
         response.status() == HttpStatus.OK
         responseBody['subscribers'].size() == 1
+
+
+        when:
+        //TODO delete the subscriber
+        subscriberEntityDataService.delete(subscriber['email'])
+        request = HttpRequest.GET('/api/subscribers')
+                .contentType(MediaType.APPLICATION_JSON)
+
+        response = httpClient.toBlocking().exchange(request, Map)
+        responseBody = response.body()
+
+        then:
+
+        response.status() == HttpStatus.OK
+        responseBody['subscribers'].size() == 0
     }
 
 }

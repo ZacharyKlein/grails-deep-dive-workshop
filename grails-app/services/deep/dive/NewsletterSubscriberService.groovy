@@ -20,13 +20,16 @@ class NewsletterSubscriberService { //implements GrailsConfigurationAware {
     @Value('${demo}')
     String demo
 
+    SubscriberEntityDataService subscriberEntityDataService
+
 
     //Injecting Grails Application context
     //GrailsApplication grailsApplication
 
-    @Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
+    //@Transactional(readOnly = true, propagation = Propagation.SUPPORTS) -- Not needed because we are using a GORM Data Service
     List<Subscriber> subscribers() {
-        SubscriberEntity.list().collect {
+
+        subscriberEntityDataService.list([sort: 'lastName']).collect {
             new Subscriber(firstName:
                     it.firstName, lastName:
                     it.lastName, email:
@@ -34,11 +37,10 @@ class NewsletterSubscriberService { //implements GrailsConfigurationAware {
         }
     }
 
-    @Transactional
     void save(Subscriber subscriber) {
         log.info "Saving subscriber: [${subscriber.email}]"
 
-        def entity = SubscriberEntity.findByEmail(subscriber.email)
+        def entity = subscriberEntityDataService.findByEmail(subscriber.email)
 
         if (!entity) {
             entity = new SubscriberEntity()
@@ -55,7 +57,7 @@ class NewsletterSubscriberService { //implements GrailsConfigurationAware {
                 log.warn it.toString()
             }
         } else {
-            entity.save()
+            subscriberEntityDataService.save(entity)
         }
 
         //Inject config via grailsApplication.config
