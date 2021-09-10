@@ -6,6 +6,15 @@ It exposes a REST API (`/api`), as well as a simple UI for subscribing for an em
 
 User login is `admin/admin`
 
+To start RabbitMQ broker/management dashboard (username/password: guest/guest)
+```
+docker run --rm -it \
+        -p 5672:5672 \
+        -p 15672:15672 \
+        rabbitmq:3.8.12-management
+
+```
+
 ## Useful links
 
 - [Workshop Slides](slides.pdf)

@@ -152,3 +152,6 @@ environments:
                 jdbcInterceptors: ConnectionState
                 defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
 
+---
+rabbitmq:
+    uri: amqp://localhost:5672
