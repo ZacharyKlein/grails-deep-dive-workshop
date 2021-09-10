@@ -27,10 +27,13 @@ class ApiControllerIntegrationSpec extends Specification {
 
         given:
         def subscriber = [firstName: "John", lastName: "Smith", email: "john@smith.com"]
+        String user = "admin"
+        String password = "admin"
 
         when: "call /api/subscribers endpoint and assert there are 0 subscribers"
         HttpRequest<?> request = HttpRequest.GET('/api/subscribers')
-        .contentType(MediaType.APPLICATION_JSON)
+                .basicAuth(user, password)
+                .contentType(MediaType.APPLICATION_JSON)
 
         def response = httpClient.toBlocking().exchange(request, Map)
         def responseBody = response.body()
@@ -41,6 +44,7 @@ class ApiControllerIntegrationSpec extends Specification {
 
         when: "POST a new subscriber to /newsletter/subscribe"
         request = HttpRequest.POST('/newsletter/subscribe', subscriber)
+                .basicAuth(user, password)
         response = httpClient.toBlocking().exchange(request, String)
 
         then:
@@ -49,6 +53,7 @@ class ApiControllerIntegrationSpec extends Specification {
 
         when: "call /api/subscribers endpoint and assert there is 1 subscriber"
         request = HttpRequest.GET('/api/subscribers')
+                .basicAuth(user, password)
                 .contentType(MediaType.APPLICATION_JSON)
 
         response = httpClient.toBlocking().exchange(request, Map)

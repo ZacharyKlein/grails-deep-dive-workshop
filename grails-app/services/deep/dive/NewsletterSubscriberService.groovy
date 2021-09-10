@@ -71,6 +71,9 @@ class NewsletterSubscriberService { //implements GrailsConfigurationAware {
             subscriberEntityDataService.save(entity)
         }
 
+
+        entity.save()
+
         //Inject config via grailsApplication.config
         //grailsApplication.config.getProperty("demo", Integer)
 
