@@ -9,10 +9,13 @@ class BootStrap {
 
     def init = { servletContext ->
 
-        Role roleAdmin = roleDataService.save("ROLE_ADMIN")
-        User admin = userDataService.save("admin", "admin")
+        if (userDataService.count() == 0) {
+            Role roleAdmin = roleDataService.save("ROLE_ADMIN")
+            User admin = userDataService.save("admin", "admin")
 
-        userRoleDataService.save(admin, roleAdmin)
+            userRoleDataService.save(admin, roleAdmin)
+        }
+
     }
     def destroy = {
     }

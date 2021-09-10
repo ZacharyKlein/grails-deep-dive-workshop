@@ -87,10 +87,15 @@ grails:
                 taglib: none
                 staticparts: none
 management:
+    security:
+        enabled: false
     endpoints:
         jmx:
             unique-names: true
-
+        enabled-by-default: true
+enpoints:
+    info:
+        sensitive: false
 ---
 hibernate:
     cache:
@@ -126,7 +131,7 @@ environments:
         api:
             url: prod.mycoolapi.com
         dataSource:
-            dbCreate: none
+            dbCreate: update
             url: jdbc:h2:./prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE
             properties:
                 jmxEnabled: true

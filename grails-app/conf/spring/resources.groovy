@@ -1,3 +1,4 @@
+import deep.dive.AmazonSimpleEmailService
 import deep.dive.UserPasswordEncoderListener
 import deep.dive.EmailComposer
 import deep.dive.SimpleEmailService
