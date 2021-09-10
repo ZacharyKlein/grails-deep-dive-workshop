@@ -17,6 +17,7 @@ docker run --rm -it \
 
 ## Useful links
 
+- [Analytics Listener App](https://github.com/ZacharyKlein/grails-deep-dive-analytics)
 - [Workshop Slides](slides.pdf)
 - Grails Documentation: https://docs.grails.org/latest/
 - Grails Guides: https://guides.grails.org/#/index
