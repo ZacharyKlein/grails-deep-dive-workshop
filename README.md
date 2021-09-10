@@ -8,6 +8,7 @@ User login is `admin/admin`
 
 ## Useful links
 
+- [Workshop Slides](slides.pdf)
 - Grails Documentation: https://docs.grails.org/latest/
 - Grails Guides: https://guides.grails.org/#/index
 - Official Grails Samples: https://github.com/grails-samples
